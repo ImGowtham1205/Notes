@@ -1,0 +1,333 @@
+@charset "UTF-8";
+
+:root{
+  --bg:#f6f8fb;
+  --card:#ffffff;
+  --accent:#d6336c;
+  --muted:#6b7280;
+  --radius:12px;
+  --shadow: 0 6px 18px rgba(16,24,40,0.08);
+  --max-width:720px;
+  --gap:1rem;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+               Roboto, "Helvetica Neue", Arial;
+}
+
+html,body{
+  height:100%;
+  margin:0;
+  background:linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+  color:#0f172a;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.4;
+  -webkit-font-feature-settings: "liga" 1;
+}
+
+/* ---------------------------
+   Top bar & Hamburger
+   --------------------------- */
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.app-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* hamburger button */
+.menu-toggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: #333;
+  border-radius: 999px;
+  transition: transform 220ms ease, opacity 180ms ease;
+}
+
+/* ---------------------------
+   Side menu
+   --------------------------- */
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 72%;
+  max-width: 280px;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: -2px 0 18px rgba(6,10,15,0.08);
+  padding: 20px 16px;
+  transform: translateX(100%);
+  transition: transform 260ms cubic-bezier(.2,.9,.2,1);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.side-menu.open {
+  transform: translateX(0);
+}
+
+.menu-header {
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+
+.menu-item {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  background-color: #f5f5f7;
+  padding: 10px 12px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 160ms ease, transform 120ms ease;
+}
+
+.menu-item:active { transform: translateY(1px); }
+
+.menu-item.logout {
+  background-color: #fff0f0;
+  color: #b91c1c;
+}
+
+/* backdrop */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.32);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 220ms ease-out, visibility 220ms ease-out;
+  z-index: 25;
+}
+
+.backdrop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ---------------------------
+   Page Card
+   --------------------------- */
+.page {
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:clamp(1rem, 2.5vw, 2rem);
+  box-sizing: border-box;
+}
+
+.card {
+  width:100%;
+  max-width:var(--max-width);
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:clamp(1rem, 2.5vw, 2rem);
+  box-sizing:border-box;
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:var(--gap);
+}
+
+.title {
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+}
+
+.title h1 {
+  margin:0;
+  font-size:1.25rem;
+  letter-spacing:-0.2px;
+}
+
+/* warning box */
+.warning {
+  background:#fff4f6;
+  border:1px solid rgba(214,51,108,0.08);
+  color:var(--accent);
+  padding:.75rem 1rem;
+  border-radius:10px;
+  font-size:0.95rem;
+}
+
+/* server error message appearance + hide animation */
+.error-msg {
+  background: #fff4f6;
+  border: 1px solid rgba(214,51,108,0.12);
+  color: var(--accent);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  margin-top: .5rem;
+  box-shadow: 0 6px 12px rgba(214,51,108,0.06);
+  transition: opacity 360ms ease, transform 360ms ease;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* when hiding, fade and slide up */
+.error-msg.hide {
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+}
+
+.lead {
+  color:var(--muted);
+  margin:0;
+  font-size:0.98rem;
+}
+
+/* controls */
+.controls {
+  display:flex;
+  gap:.5rem;
+  align-items:center;
+  margin-top:.5rem;
+  flex-wrap:wrap;
+}
+
+button {
+  border:0;
+  padding:.65rem .9rem;
+  border-radius:10px;
+  font-size:0.95rem;
+  cursor:pointer;
+  box-sizing: border-box;
+}
+
+.btn-danger {
+  background:var(--accent);
+  color:white;
+  box-shadow: 0 6px 12px rgba(214,51,108,0.14);
+}
+
+.btn-ghost {
+  background:transparent;
+  color:var(--muted);
+  border:1px solid rgba(15,23,42,0.06);
+}
+
+/* Hidden form area */
+.password-area {
+  overflow:hidden;
+  transition: max-height 350ms cubic-bezier(.2,.8,.2,1), opacity 250ms ease;
+  max-height:0;
+  opacity:0;
+  margin-top: 0;
+}
+
+.password-area.open {
+  max-height:320px; /* enough to show contents */
+  opacity:1;
+  margin-top: .5rem;
+}
+
+form.delete-form {
+  display:flex;
+  flex-direction:column;
+  gap:.6rem;
+  margin-top:.5rem;
+}
+
+label {
+  font-size:0.88rem;
+  color:var(--muted);
+}
+
+input[type="password"] {
+  padding:.65rem .75rem;
+  border-radius:8px;
+  border:1px solid #e6e9ee;
+  outline:none;
+  font-size:1rem;
+  box-sizing:border-box;
+  width:100%;
+}
+
+input[type="password"]:focus {
+  border-color: rgba(99,102,241,0.9);
+  box-shadow: 0 6px 18px rgba(99,102,241,0.08);
+}
+
+.form-actions {
+  display:flex;
+  gap:.5rem;
+  justify-content:flex-end;
+  margin-top:.25rem;
+}
+
+.note {
+  font-size:0.85rem;
+  color:var(--muted);
+  margin-top:.35rem;
+}
+
+/* small inline error */
+.field-error {
+  color:#b91c1c;
+  font-size:.85rem;
+  margin-top:.25rem;
+}
+
+/* Mobile tweaks */
+@media (max-width:420px){
+  .card {
+    padding:1rem;
+  }
+
+  .title h1 {
+    font-size:1.05rem;
+  }
+
+  .btn-danger, .btn-ghost {
+    flex:1 1 auto;
+  }
+
+  .controls { justify-content:flex-end; }
+}
+
+/* Desktop tweaks */
+@media (min-width:900px) {
+  .side-menu { width: 320px; }
+}
+
+/* keep layout tidy if top-bar present */
+body.has-topbar { padding-top: 56px; } /* optional if using sticky top-bar */

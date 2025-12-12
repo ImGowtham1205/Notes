@@ -1,0 +1,91 @@
+@charset "UTF-8";
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-color: #ffffff;
+    color: #222;
+}
+
+/* TOP BAR */
+.edit-top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 12px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.edit-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* left & right icons */
+.icon-btn {
+    border: none;
+    background: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 4px 10px;
+}
+
+.back-btn {
+    position: absolute;
+    left: 8px;
+}
+
+.tick-btn {
+    position: absolute;
+    right: 8px;
+}
+
+/* MAIN CONTENT */
+.edit-main {
+    padding: 16px 14px 24px;
+}
+
+/* Title textarea (big heading style) */
+.edit-title-input {
+    width: 100%;
+    resize: none;
+    border: none;
+    outline: none;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 14px;
+    background-color: transparent;
+}
+
+/* Description textarea */
+.edit-body-input {
+    width: 100%;
+    min-height: calc(100vh - 140px);
+    border: none;
+    outline: none;
+    resize: none;
+    font-size: 1rem;
+    line-height: 1.5;
+    background-color: transparent;
+}
+
+/* For small screens keep padding nice */
+@media (min-width: 768px) {
+    .edit-main {
+        max-width: 640px;
+        margin: 0 auto;
+    }
+}
