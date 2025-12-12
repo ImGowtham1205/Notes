@@ -7,7 +7,7 @@
 ✔ Create, update, view & delete personal notes
 ✔ Persistence using Spring Data JPA
 ✔ Email handling via JavaMailSender
-✔ Responsive UI using JSP + Bootstrap / HTML / CSS
+✔ Responsive UI using JSP + CSS + JS
 
 | Layer          | Technology                                  |
 | -------------- | ------------------------------------------- |
