@@ -1,12 +1,3 @@
-/* deleteuser.js
-   Full script for deleteuser.jsp
-   - defensive guard to remove stray server messages
-   - hamburger / side-menu behavior
-   - delete-user password reveal + validation
-   - auto-show + auto-hide server-side message when present
-   - lightweight accessibility + focus handling
-*/
-
 (function () {
   // ---------- CONTEXT PATH ----------
   const contextPath = document.body.getAttribute("data-context-path") || "";
@@ -249,5 +240,4 @@
   if (document.readyState !== 'loading') safeInit();
   else document.addEventListener('DOMContentLoaded', safeInit);
 
-  // ---------- END ----------
 })();

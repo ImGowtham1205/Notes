@@ -8,7 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/access.css">
 </head>
-
+<%
+	//Disable cache
+	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");//HTTP 1.1
+	response.setHeader("pragma","no-cache");//HTTP 1.0
+	response.setHeader("Expires", "0");//Proxy Server
+%>
 <body>
 <div class="container">
     <div class="card">

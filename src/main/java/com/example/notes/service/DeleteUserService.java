@@ -10,6 +10,8 @@ import com.example.notes.repository.UserRepo;
 
 @Service
 public class DeleteUserService {
+	
+	//Filed injection applied here
 	@Autowired
 	private UserRepo userrepo;
 	@Autowired
@@ -17,11 +19,13 @@ public class DeleteUserService {
 	@Autowired
 	private SimpleMailMessage msg;
 	
+	//This method use for to delete user record from the database
 	public void deleteUser(Users user) {
 		userrepo.deleteById(user.getId());
 		deleteAccountMail(user);
 	}
 	
+	//This method is use to send account deletion mail to the user
 	private void deleteAccountMail(Users user) {
 		String subject = "Your Notes Application Account Has Been Deleted";
 		final String from="notes.hub.service@gmail.com";

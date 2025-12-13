@@ -18,6 +18,7 @@ response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");//HTTP 
 response.setHeader("Pragma","no-cache");//HTTP 1.0
 response.setHeader("Expires", "0");//Proxy Server   
 
+//Redirect to access if user not logged in
 String mail = (String) request.getAttribute("Mail");
 if (mail == null) {
     response.sendRedirect("/access");

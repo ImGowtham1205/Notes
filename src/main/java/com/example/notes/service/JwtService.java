@@ -23,6 +23,7 @@ public class JwtService {
 
 	private String secretkey=generatekey();
 	
+	//This method is use to generate jwt token
 	public String generateToken(String email) {
 		
 		Map<String,Object> claim = new HashMap<>();
@@ -37,12 +38,14 @@ public class JwtService {
 				.signWith(getKey())
 				.compact();
 	}
-
+	
+	//This method is use to get Key for jwt token
 	private SecretKey getKey() {
 		 byte[] key=Decoders.BASE64.decode(secretkey);
 		return Keys.hmacShaKeyFor(key);
 	}
 	
+	//This method is use to generate key for jwt token
 	private String generatekey() {
 		try {
 			KeyGenerator keygen = KeyGenerator.getInstance("HmacSHA256");
@@ -54,15 +57,18 @@ public class JwtService {
 		}
 	}
 	
+	//This method is use to extract email from the token
 	public String extractEmail(String token) {
         return extractClaim(token, Claims::getSubject);
     }
-
+	
+	//Sub method for extractEmail() Method
     private <T> T extractClaim(String token, Function<Claims, T> claimResolver) {
         final Claims claims = extractAllClaims(token);
         return claimResolver.apply(claims);
     }
-
+    
+  //Sub method for extractEmail() Method
     private Claims extractAllClaims(String token) {
         return Jwts.parser()
                 .verifyWith(getKey())
@@ -70,16 +76,19 @@ public class JwtService {
                 .parseSignedClaims(token)
                 .getPayload();
     }
-
+    
+    //This method is use for to validate token
     public boolean validateToken(String token, UserDetails userDetails) {
         final String userName = extractEmail(token);
         return (userName.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
-
+    
+    //Sub method for validateToken() Method
     private boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
-
+    
+  //Sub method for validateToken() Method
     public Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
     }

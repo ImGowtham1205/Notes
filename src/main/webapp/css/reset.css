@@ -18,11 +18,8 @@ body {
     color: #222;
 }
 
-/* ============================= */
-/* TOP BAR  (same as welcome.css) */
-/* ============================= */
 .top-bar {
-    position: sticky;           /* same behaviour as welcome page */
+    position: sticky;           
     top: 0;
     z-index: 20;
     display: flex;
@@ -38,9 +35,6 @@ body {
     font-weight: 600;
 }
 
-/* ============================= */
-/* HAMBURGER  (same as welcome.css) */
-/* ============================= */
 .menu-toggle {
     position: absolute;
     right: 16px;
@@ -66,9 +60,6 @@ body {
     border-radius: 999px;
 }
 
-/* ============================= */
-/* SIDE MENU  (same as welcome.css) */
-/* ============================= */
 .side-menu {
     position: fixed;
     top: 0;
@@ -114,9 +105,6 @@ body {
     color: #c62828;
 }
 
-/* ============================= */
-/* BACKDROP (same as welcome.css) */
-/* ============================= */
 .backdrop {
     position: fixed;
     inset: 0;
@@ -132,14 +120,10 @@ body {
     visibility: visible;
 }
 
-/* Optional dim on menu open (if used) */
 body.menu-open .container {
     filter: brightness(0.75);
 }
 
-/* ============================= */
-/* PAGE LAYOUT */
-/* ============================= */
 .container {
     width: 100%;
     max-width: 480px;
@@ -147,9 +131,6 @@ body.menu-open .container {
     padding: 90px 16px 30px;
 }
 
-/* ============================= */
-/* RESET FORM BOX */
-/* ============================= */
 .reset-box {
     background: #fff;
     padding: 26px 22px;
@@ -248,9 +229,38 @@ input {
     background: #2563eb;
 }
 
+/* Back to login text */
+.signup-text {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Login link */
+.signup-text a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 4px;
+    transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+/* Hover effect */
+.signup-text a:hover {
+    color: #2563eb;
+    text-decoration: underline;
+}
+
 /* Small responsive tweak */
 @media (min-width: 768px) {
     .app-title {
         font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .signup-text {
+        font-size: 0.85rem;
     }
 }

@@ -37,7 +37,8 @@
             <div class="login-header">
                 <h3>Forgot Password</h3>
             </div>
-
+            
+			<!-- Message -->
             <% 
                 Object statusObj = request.getAttribute("status");
                 if (statusObj != null && "success".equals(statusObj.toString())) {
@@ -48,7 +49,7 @@
             <% } %>
 
             <form id="registerForm" action="reset" method="post" novalidate>
-                <!-- EMAIL -->
+              
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="you@example.com" required />
@@ -62,9 +63,7 @@
                     <span></span>
                 </div>
 
-                <p class="signup-text">
-                    Back To Login page
-                    <a href="/">Login</a>
+                <p class="signup-text"> Back To Login page <a href="/">Login</a>
                 </p>
             </form>
         </div>

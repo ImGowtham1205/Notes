@@ -20,14 +20,15 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+//This service layer is use for to validate jwt token
 @Service
 public class JwtFilter extends OncePerRequestFilter {
 
+	//Field injection applied here
     @Autowired
     private JwtService jwtservice;
-
     @Autowired
-    ApplicationContext context;
+    private ApplicationContext context;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
@@ -36,9 +37,12 @@ public class JwtFilter extends OncePerRequestFilter {
         String token = null;
         String email = null;
 
+        
         if (auth != null && auth.startsWith("Bearer ")) {
+        	//Fetch jwt token
             token = auth.substring(7);
         } else {
+        		//Fetch jwt token from the cookie
             Cookie[] cookies = request.getCookies();
             if (cookies != null) {
                 for (Cookie ck : cookies) {
@@ -73,7 +77,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 Date expiry = jwtservice.extractExpiration(token);
                 long ms = expiry.getTime() - System.currentTimeMillis();
 
-                if (ms < 5 * 60 * 1000) { // less than 5 min remaining
+                if (ms < 5 * 60 * 1000) { // less than 5 minutes remaining
                     String newtoken = jwtservice.generateToken(user.getUsername());
 
                     ResponseCookie cookie = ResponseCookie.from("jwt", newtoken)

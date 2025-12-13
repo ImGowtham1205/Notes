@@ -33,6 +33,7 @@
 
         <div class="login-right">
             <div class="login-header">
+            <!-- Message -->
                 <% 
                     Object statusObj = request.getAttribute("status");
                     if (statusObj != null && "fail".equals(statusObj.toString())) {

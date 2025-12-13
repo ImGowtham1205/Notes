@@ -37,7 +37,7 @@
             <div class="login-header">
                 <h3>Create your account</h3>
             </div>
-            
+            <!-- Message -->
              <% 
                     Object statusObj = request.getAttribute("status");
                     if (statusObj != null && "success".equals(statusObj.toString())) {

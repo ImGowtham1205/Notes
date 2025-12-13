@@ -16,7 +16,8 @@
   		response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");//HTTP 1.1
 		response.setHeader("pragma","no-cache");//HTTP 1.0
 		response.setHeader("Expires", "0");//Proxy Server
-	
+		
+		// Redirect to access if user not logged in
 		mail = (String) request.getAttribute("Mail");
 		if(mail==null){
 			response.sendRedirect("/access");
@@ -30,7 +31,6 @@
         <button type="submit" class="icon-btn right" id="saveBtn" aria-label="Save">✔</button>
     </header>
 
-    <!-- Main content -->
     <main class="page">
         <section class="note-box">
             <input type="text" id="titleInput" name="title" class="title-input"placeholder="Title"/>

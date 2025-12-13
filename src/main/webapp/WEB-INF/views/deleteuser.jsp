@@ -10,7 +10,13 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/deleteuser.css" />
 </head>
 
-	<%
+	<%	
+		//Disable cache
+		response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");//HTTP 1.1
+		response.setHeader("pragma","no-cache");//HTTP 1.0
+		response.setHeader("Expires", "0");//Proxy Server
+	
+		// Redirect to access if user not logged in
 		String mail = (String)request.getAttribute("Mail");
 		if(mail == null){
 			response.sendRedirect("/access");
@@ -31,7 +37,6 @@
       </button>
   </header>
 
-  <!-- SIDE MENU (same IDs and buttons as welcome.jsp) -->
   <nav class="side-menu" id="sideMenu" aria-hidden="true">
       <div class="menu-header"><%= name %> Account</div>
       <button class="menu-item" id="homeBtn">Home</button>
@@ -39,7 +44,6 @@
       <button class="menu-item logout" id="logoutBtn">Logout</button>
   </nav>
 
-  <!-- DARK OVERLAY FOR MENU -->
   <div class="backdrop" id="backdrop"></div>
 
   <main class="page" role="main">
@@ -55,7 +59,7 @@
       <p class="lead">Are you sure you want to delete your account? This action cannot be undone.</p>
 
       <div class="controls" id="initial-controls">
-        <!-- Confirm does not submit — it reveals the password form -->
+
         <button id="confirm-btn" type="button" class="btn-danger" aria-controls="password-area" aria-expanded="false">
           Confirm
         </button>
@@ -76,7 +80,8 @@
             <div id="pw-note" class="note">We require your password to confirm this action.</div>
           </div>
 		
-			<% 
+			<!-- Message -->
+				<% 
                     Object statusObj = request.getAttribute("status");
                     if (statusObj != null && "fail".equals(statusObj.toString())) {
                 %>

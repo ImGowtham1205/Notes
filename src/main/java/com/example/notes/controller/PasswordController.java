@@ -100,7 +100,7 @@ public class PasswordController {
 	        //Getting user detail by calling getUser() method by passing mail as argument
 	        Users user = passservice.getUser(email);
 	        
-	        //Send username to changepassword.jsp by using Model Interface
+	        //Send UserName to changepassword.jsp by using Model Interface
 	        m.addAttribute("name", user.getUsername());
 	        return "changepassword";
 	    }

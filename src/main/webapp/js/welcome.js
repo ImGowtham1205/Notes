@@ -1,4 +1,3 @@
-// ---------- welcome.js (final) ----------
 
 // ---------- CONTEXT PATH ----------
 const contextPath = document.body.getAttribute("data-context-path") || "";

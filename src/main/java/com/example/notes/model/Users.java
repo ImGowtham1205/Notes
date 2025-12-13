@@ -12,7 +12,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
-//This Class Is Use To CRUD Operation From The Users tables From The Database
 @Entity
 @Table(name="users",uniqueConstraints = @UniqueConstraint(columnNames = {"email"}))
 public class Users {

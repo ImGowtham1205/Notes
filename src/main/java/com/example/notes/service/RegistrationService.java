@@ -12,7 +12,8 @@ import com.example.notes.repository.UserRepo;
 
 @Service
 public class RegistrationService {
-
+	
+	//Field injection applied here
 	@Autowired
 	private UserRepo repo;	
 	@Autowired
@@ -20,11 +21,13 @@ public class RegistrationService {
 	@Autowired
 	private SimpleMailMessage msg;
 	
+	//This method is use for to add new user 
 	public void addUser(Users user) {
 		repo.save(user);
 		registerMailToUsers(user);
 	}
 	
+	//This method checks the entered email is available in database
 	public boolean checkEmail(String mail) {
 		List<String> emails=repo.fetchEmail();
 		for(String email :emails) {
@@ -34,6 +37,7 @@ public class RegistrationService {
 		return false;
 	}
 	
+	//This method is use to sent account creation mail to registered user mail
 	private void registerMailToUsers(Users user) {
 		String subject="Welcome to Notes Portal – Your Account Has Been Successfully Created";
 		String support="notes.hub.service@gmail.com";

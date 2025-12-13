@@ -28,12 +28,13 @@ public class TaskController {
 		   this.passservice=passservice;
 		   this.taskservice=taskservice;
 	   }
-	   
+	
+	 //This mapping is use for to display the addtask.jsp page
     @GetMapping("/addtask")
     public String addTask(Model m, Authentication authentication) {
     	
-    	String email=null;
-    	
+    	//Using Authentication Class object fetch the logged in user mail id
+    	String email=null;  	
         if (authentication != null && authentication.isAuthenticated()) {
             email = authentication.getName();
             m.addAttribute("Mail", email);
@@ -41,6 +42,7 @@ public class TaskController {
         return "addtask";
     }
     
+    //This mapping is use for to add task for user
     @PostMapping("/newtask")
     public String newTask(@RequestParam("title") String title,
     		@RequestParam("description") String description,@RequestParam("mail") String mail,
@@ -50,7 +52,9 @@ public class TaskController {
     		return "addtask";
     	
     	else {
+    		//Getting user detail by calling getUser() method by passing mail as argument
     		Users user = passservice.getUser(mail);
+    		
     		UserTask usertask = new UserTask();
     		usertask.setTitle(title);
     		usertask.setDescription(description);
@@ -62,15 +66,18 @@ public class TaskController {
     	}
   }
    
+   //This mapping is use for to view page for update the selected task
     @GetMapping("/edittask/{taskId}")
    public String editTask(@PathVariable int taskId,Model m, Authentication authentication) {
     
+    	//Using Authentication Class object fetch the logged in user mail id
     	String mail=null;	
     	if(authentication != null && authentication.isAuthenticated()) {
     		mail = authentication.getName();
     		m.addAttribute("Mail", mail);
     	}
     	
+    	//getting selected task details by calling findTaskById() Method
     	UserTask task = taskservice.findTaskById(taskId).orElse(null);
     	
     	if(task == null)
@@ -87,6 +94,7 @@ public class TaskController {
 	   return "updatetask";
    }
     
+  //This mapping is use for to update the selected task
     @PostMapping("edittask/updatetask") 
     public String updateTask(@RequestParam("title") String title,
     		@RequestParam("description") String description,@RequestParam("taskId") int taskid) {
@@ -97,6 +105,7 @@ public class TaskController {
     	return "redirect:/welcome";
     }
     
+  //This mapping is use for to delete the selected tasks
     @PostMapping("deletetask")
     public String deleteTask(@RequestParam("taskids") List<Integer> ids) {
     	taskservice.deleteTask(ids);

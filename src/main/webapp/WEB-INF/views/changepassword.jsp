@@ -16,7 +16,8 @@
 	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");//HTTP 1.1
 	response.setHeader("pragma","no-cache");//HTTP 1.0
 	response.setHeader("Expires", "0");//Proxy Server
-
+	
+	// Redirect to access if user not logged in
     String mail = (String) request.getAttribute("Mail");
     if (mail == null) {
         response.sendRedirect("/access");
@@ -26,7 +27,6 @@
     String name = (String) request.getAttribute("name");
 %>
 
-<!-- TOP BAR (same look as welcome.jsp) -->
 <header class="top-bar" id="mainBar">
     <h1 class="app-title">welcome <%= name %></h1>
 
@@ -38,7 +38,6 @@
     </button>
 </header>
 
-<!-- SIDE MENU (same look/structure style as welcome.jsp) -->
 <nav class="side-menu" id="sideMenu">
     <div class="menu-header"><%= name %> Account</div>
 
@@ -62,7 +61,8 @@
 <div class="container">
 
     <form class="reset-box" id="resetForm" method="post" action="changepassword" novalidate>
-
+	
+	<!-- Message -->
         <%
             Object statusObj = request.getAttribute("status");
             if (statusObj != null && "fail".equals(statusObj.toString())) {
